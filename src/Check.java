@@ -15,6 +15,12 @@ public class Check {
     return win;
   }
 
+  public static int center(int area[][]) {
+    if (area[2][2] == 0) return 0;
+    else if (area[2][2] == 1) return 1;
+    else return 2;
+  }
+  
   public static boolean reach(int area[][]) {
     int reachNum = 0;
     for (int i = 1; i < 4; i++) {
@@ -32,20 +38,14 @@ public class Check {
     else return false;
   }
 
-  public static int center(int area[][]) {
-    if (area[2][2] == 0) return 0;
-    else if (area[2][2] == 1) return 1;
-    else return 2;
-  }
-
   public static boolean end(int area[][]) {
-    int zeroNum = 0;
+    int emptyNum = 0;
     for (int i = 1; i < 4; i++) {
       for (int j = 1; j < 4; j++) {
-        if (area[i][j] == 0) zeroNum++;
+        if (area[i][j] == 0) emptyNum++;
       }
     }
-    if (zeroNum == 0) return true;
+    if (emptyNum == 0) return true;
     else return false;
   }
 

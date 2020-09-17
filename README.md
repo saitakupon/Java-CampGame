@@ -20,7 +20,48 @@
 - 勝敗が決することなくマスが全て埋まった場合、引き分けとして正常にゲームが終了するか
 
 ## 発展
-- プレイヤー(入力) 対 CPU(自動)
+- プレイヤー(入力) 対 プレイヤー(CPU)
 - CPUは任意のアルゴリズムに従って石を置く(ランダムを避けるのが望ましい)
 - 絶対に負けないアルゴリズムを搭載したCPUの作成
 - スタート時に対人モードと対CPUモードを選択可とする
+
+## 構成
+#### `CampGame`->`Func`->`Scene`->`Player`->`Move`->`Check`
+
+### CampGame
+- `main()`
+  - `area` ... 現在のエリア状況
+  - `playerNum` ... プレイヤーの識別番号
+  - `turn` ... ターン数
+  - `mode` ... 選択されたモード
+
+### Func
+- `getRandPlayerNum()` ... 先攻を決める乱数を取得
+- `getMode()` ... モードを取得
+- `changeTurn()` ... ターンを更新し出力
+- `changePlayerNum()` ... ターンの更新に合わせてプレイヤーを更新
+
+### Scene
+- `clearScene()` ... 画面のリフレッシュ
+- `startScene()` ... スタート画面
+- `gameScene()` ... ゲーム画面
+- `resultScene()` ... リザルト画面
+
+### Player
+- `updateArea()` ... エリアの更新
+  - `human()` ... プレイヤー(入力)の場合の動作
+  - `cpu()` ... プレイヤー(CPU)の場合の動作
+
+### Move
+- `putBlankPoint()` ... ブランクに置く
+- `putCenter()` ... 中心に置く
+- `putCorner()` ... 角に置く
+- `putLinear()` ... 角以外に置く
+- `putReachPoint()` ... リーチの座標に置く
+- `putWinningPoint()` ... 勝利が確定する場所に置く
+
+### Check
+- `center()` ... 中心がブランクか
+- `reach()` ... リーチがあるか
+- `win()` ... 勝利条件が満たされているか
+- `end()` ... ブランクがあるか

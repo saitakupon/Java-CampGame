@@ -1,41 +1,19 @@
-import java.util.Scanner;
+public class Scene extends Player {
 
-public class Show {
-
-  public static void clear() {
+  public static void clearScene() {
     System.out.print("\n\n\n\n\n\n\n\n\n\n");
     System.out.print("\n\n\n\n\n\n\n\n\n\n");
     System.out.print("\n\n\n\n\n\n\n\n\n\n");
   }
 
-  public static int startScene() {
-    Scanner stdIn = new Scanner(System.in);
+  public static void startScene() {
     System.out.println("\n      *****************************\n      |                           |");
     System.out.println("      |       〜CAMP GAME〜       |\n      |                           |\n      |          START！          |");
     System.out.println("      |                           |\n      *****************************\n");
-    System.out.print("         Please Choose the Mode.\n\n           \'0\'-> CPU Mode\n           \'1\'-> Player Mode\n\n");
-    boolean modeCheck = false;
-    int mode = -1;
-    while(!modeCheck) {
-      System.out.print("                    ");
-      String modeStr = stdIn.next();
-      try {
-        mode = Integer.parseInt(modeStr);
-      } catch(Exception e) {}
-      if (mode == 0 || mode == 1) modeCheck = true;
-      else System.out.println("         Please Enter \'0\' or \'1\'.");
-    }
-    return mode;
   }
 
-  public static int turn(int turn) {
-    turn++;
-    System.out.print(" Turn：" + turn);
-    return turn;
-  }
-
-  public static void campArea(int mode, int area[][]) {
-    clear();
+  public static void gameScene(int mode, int area[][]) {
+    clearScene();
     if (mode == 0) System.out.print(" ○：Player1\n ●：CPU\n\n\n");
     else System.out.print(" ○：Player1\n ●：Player2\n\n\n");
     for (int ii = 0; ii < 8; ii++) {
@@ -67,7 +45,7 @@ public class Show {
   }
 
   public static void resultScene(int mode, int playerNum, int area[][]){
-    if (Check.win(area)) {
+    if (win(area)) {
       if (playerNum == 1) System.out.println(" WINNER：Player1！");
       else {
         if (mode == 0) System.out.println(" WINNER：CPU！");

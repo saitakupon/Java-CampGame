@@ -1,31 +1,33 @@
-public class CampGame {
+public class CampGame extends Func {
 
   public static void main(String[] args) {
     //キャンプエリアを用意
     int area[][] = new int[4][4];
     //プレイヤー順をランダムにセット
-    int playerNum = Func.randomPlayerNum();
+    int playerNum = getRandPlayerNum();
     //ターン数を初期化
     int turn = 0;
     //スタート画面の表示
-    int mode = Show.startScene();
+    startScene();
+    //モード選択
+    int mode = getMode();
     //キャンプエリアの表示
-    Show.campArea(mode, area);
+    gameScene(mode, area);
     //勝敗が決まるまでループ
-    while (!Check.win(area)) {
+    while (!win(area)) {
       //ターン数の表示
-      turn = Show.turn(turn);
+      turn = changeTurn(turn);
       //プレイヤーのスイッチ
-      playerNum = Func.changePlayerNum(playerNum);
-      //キャンプエリアの移動
-      area = Move.area(mode, turn, playerNum, area);
+      playerNum = changePlayerNum(playerNum);
+      //キャンプエリアの更新
+      updateArea(mode, turn, playerNum, area);
       //キャンプエリアの表示
-      Show.campArea(mode, area);
+      gameScene(mode, area);
       //フィールドが全て埋まったらループを抜ける
-      if (Check.end(area)) break;
+      if (end(area)) break;
     }
     //リザルト画面の表示
-    Show.resultScene(mode, playerNum, area);
+    resultScene(mode, playerNum, area);
   }
-  
+
 }
