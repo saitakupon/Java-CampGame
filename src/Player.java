@@ -1,5 +1,3 @@
-import java.util.Scanner;
-
 public class Player extends Move {
 
   public static void cpu(int turn, int playerNum, int area[][]) {
@@ -62,9 +60,7 @@ public class Player extends Move {
   }
 
   public static void human(int turn, int playerNum, int area[][]) {
-    Scanner stdIn = new Scanner(System.in);
     System.out.println(" Player" + playerNum);
-    boolean putCheck = false;
     if (turn == 9) {
       try {
         System.out.println(" There's only one place you can put it.");
@@ -74,25 +70,7 @@ public class Player extends Move {
           e.printStackTrace();
       }
     } else {
-      while(putCheck == false) {
-        System.out.print(" Please enter a place to put it. (x,y)：");
-        String s = stdIn.next();
-        String [] position =s.split(",", 0);
-        int x, y;
-        try {
-          x = Integer.parseInt(position[0]);
-          y = Integer.parseInt(position[1]);
-        } catch(Exception e) {
-          x = 0;
-          y = 0;
-        }
-        if (x > 3 || y > 3 ||  x < 1 || y < 1) System.out.println(" Illegal.");
-        else if (area[y][x] != 0) System.out.println(" It has already been put there.");
-        else {
-          area[y][x] = playerNum;
-          putCheck = true;
-        }
-      }
+      putDirected(area, playerNum);
     }
   }
 

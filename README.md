@@ -54,6 +54,7 @@
 
 ### Move
 - `putBlankPoint()` ... ブランクに置く
+- `putDirected()` ... 入力座標に従って置く
 - `putCenter()` ... 中心に置く
 - `putCorner()` ... 角に置く
 - `putLinear()` ... 角以外に置く
